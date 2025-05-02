@@ -59,9 +59,9 @@ public class DetailFragment extends Fragment {
         // Set the description
         description.setText(desc);
 
-        // Always use generated images (e.g., from Picsum)
+
         if (imageUrl != null) {
-            // Glide will now directly load the image URL without placeholder logic
+
             Glide.with(this)
                 .load(imageUrl)
                 .listener(new RequestListener<Drawable>() {
@@ -73,21 +73,21 @@ public class DetailFragment extends Fragment {
 
                     @Override
                     public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                        // Optionally log when the image is ready
-                        return false;  // Allow Glide to handle the resource
+
+                        return false;
                     }
                 })
-                .into(image);  // Set the loaded image into the ImageView
+                .into(image);
         }
 
-        // Generate related news dynamically
+
         RandomNewsGenerator.generateRandomNews(5, new RandomNewsGenerator.NewsDataCallback() {
             @Override
             public void onDataFetched(List<NewsItem> relatedNewsItems) {
-                // Set up RecyclerView with related news
+
                 relatedNewsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                 relatedNewsRecyclerView.setAdapter(new NewsAdapter(relatedNewsItems, item -> {
-                    // Handle item click, e.g., open detail fragment
+
                 }));
             }
         });
